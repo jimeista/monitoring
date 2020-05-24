@@ -1,8 +1,5 @@
-export const fetchData = async (url) => {
-  await fetch(url)
-    .then((res) => res.json())
-    .then((data) => data)
-}
+export const fetchData = async (url) =>
+  await fetch(url).then((res) => res.json())
 
 export const postData = async (data, url) => {
   const rawResponse = await fetch(url, {

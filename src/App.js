@@ -7,14 +7,14 @@ import { Admin } from './pages/Admin'
 import { Home } from './pages/Home'
 
 function App() {
-  const { events, setEvent, passport, setPassport } = useContext(AppContext)
+  const { setEvent, setPassport } = useContext(AppContext)
 
   useEffect(() => {
-    const pass = fetchData('http://localhost:8000/passport')
-    setPassport(pass)
-    const evs = fetchData('http://localhost:8000/events')
+    fetchData('http://localhost:8000/passport').then((data) =>
+      setPassport(data)
+    )
 
-    setEvent(evs)
+    fetchData('http://localhost:8000/events').then((data) => setEvent(data))
   }, [])
 
   return (

@@ -26,7 +26,7 @@ export const getData = (arr) => {
   return data
 }
 
-export const getDistricts = (data) => {
+export const getDistricts = () => {
   const districts = []
 
   Object.keys(data).map((key) => districts.push(key))
@@ -38,10 +38,23 @@ const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-const data = {
+export const mapp = (arr, bool, db) => {
+  arr.forEach((item) => {
+    let obj = {}
+    const district = item.district
+    for (let key in item) {
+      if (key !== 'district') {
+        obj = { ...obj, [key]: item[key] }
+      }
+    }
+    bool ? db[district].events.push(obj) : db[district].passport.push(obj)
+  })
+}
+
+export const data = {
   'Алатайский район': { events: [], passport: [] },
   'Алмалинский район': { events: [], passport: [] },
-  'Ауэзовский район': { events: [], passport: [] },
+  'Ауезовский район': { events: [], passport: [] },
   'Бостандыкский район': { events: [], passport: [] },
   'Медеуский район': { events: [], passport: [] },
   'Наурызбайский район': { events: [], passport: [] },
