@@ -1,35 +1,39 @@
 import React from 'react'
+import Card from '@material-ui/core/Card'
+import { makeStyles } from '@material-ui/core/styles'
 
 import { Events } from './Events'
 import { Passport } from './Passport'
+import { Heading } from './Heading'
 
-const classes = {
+const useStyles = makeStyles({
   root: {
-    width: '100%',
-  },
-  heading: {
     display: 'flex',
+    flexGrow: 1,
+    margin: '5px 0',
     alignItems: 'center',
-    color: '#333',
-    padding: '10px',
+    boxSizing: 'border-box',
   },
   panel: {
     display: 'flex',
+    height: '80%',
     justifyContent: 'space-between',
-    padding: '10px',
+    padding: 10,
   },
-}
+  card: {
+    height: '100vh',
+  },
+})
 
 export const District = ({ district }) => {
+  const classes = useStyles()
   return (
-    <div style={classes.root}>
-      <div style={classes.heading}>
-        <h1>{district.district}</h1>
-      </div>
-      <div style={classes.panel}>
-        <Events events={district.events} />
+    <Card classes={{ root: classes.card }}>
+      <Heading title={district.district} />
+      <div className={classes.panel}>
         <Passport passport={district.passport} />
+        <Events events={district.events} />
       </div>
-    </div>
+    </Card>
   )
 }

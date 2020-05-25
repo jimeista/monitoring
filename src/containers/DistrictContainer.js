@@ -6,16 +6,15 @@ import { District } from '../components/District/District'
 export const DistrictContainer = () => {
   const { db } = React.useContext(AppContext)
 
-  const dis = 'Алатайский район'
-  let district = {
-    district: dis,
-    events: db[dis].events,
-    passport: db[dis].passport,
-  }
+  const renderDistrict = Object.keys(db).map((key) => {
+    let district = {
+      district: key,
+      events: db[key].events,
+      passport: db[key].passport,
+    }
 
-  return (
-    <div>
-      <District district={district} />
-    </div>
-  )
+    return <District district={district} />
+  })
+
+  return <>{renderDistrict}</>
 }
