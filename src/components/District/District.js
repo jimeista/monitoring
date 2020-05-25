@@ -1,5 +1,4 @@
 import React from 'react'
-import Card from '@material-ui/core/Card'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { Events } from './Events'
@@ -16,24 +15,21 @@ const useStyles = makeStyles({
   },
   panel: {
     display: 'flex',
-    height: '80%',
     justifyContent: 'space-between',
     padding: 10,
   },
-  card: {
-    height: '100vh',
-  },
+  card: {},
 })
 
 export const District = ({ district }) => {
   const classes = useStyles()
   return (
-    <Card classes={{ root: classes.card }}>
+    <div>
       <Heading title={district.district} />
       <div className={classes.panel}>
         <Passport passport={district.passport} />
         <Events events={district.events} />
       </div>
-    </Card>
+    </div>
   )
 }

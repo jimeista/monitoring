@@ -9,7 +9,7 @@ import { Heading } from './Heading'
 const useStyles = makeStyles({
   root: {
     width: '46%',
-    height: '100%',
+    height: '75vh',
     padding: 20,
     paddingTop: 0,
     overflow: 'auto',
