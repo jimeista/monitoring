@@ -6,18 +6,10 @@
       "district": "Ауезовский район"
     },
     {
-      "event": "dlkfmskdlfn сетей",
       "id": 1
     }
   ],
   "passport": [
-    {
-      "number-tag": "6763",
-      "measurement": "",
-      "id": 3,
-      "district": "Ауезовский район",
-      "description-tag": "Саженцев хвойных и лиственных пород высажены"
-    },
     {
       "number-tag": "23",
       "measurement": "",
@@ -31,6 +23,13 @@
       "id": 1,
       "district": "Алмалинский район",
       "description-tag": "сетей водопровода и канализации проведено в 2019 году"
+    },
+    {
+      "number-tag": "\\87\\8\\7",
+      "measurement": "asdad",
+      "district": "dasd",
+      "description-tag": "dada",
+      "id": 3
     }
   ]
 }

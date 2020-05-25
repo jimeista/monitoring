@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import MaterialTable from 'material-table'
 
-export const Panel = ({ cols, data }) => {
+export const Panel = (props) => {
+  const { cols, data, postData, putData, deleteData, url } = props
+
   const [state, setState] = useState({ cols, data })
   const [selectedRow, setSelectedRow] = useState(null)
 
@@ -34,14 +36,29 @@ export const Panel = ({ cols, data }) => {
         },
       ]}
       editable={{
+        onRowAdd: (newData) =>
+          new Promise((resolve) => {
+            setTimeout(() => {
+              resolve()
+              setState((prevState) => {
+                const data = [...prevState.data]
+                data.push(newData)
+                postData(url, newData)
+                return { ...prevState, data }
+              })
+            }, 600)
+          }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
+            console.log(newData)
+            console.log(oldData)
             setTimeout(() => {
               resolve()
               if (oldData) {
                 setState((prevState) => {
                   const data = [...prevState.data]
                   data[data.indexOf(oldData)] = newData
+                  putData(`${url}/${oldData.id}`, newData)
                   return { ...prevState, data }
                 })
               }
@@ -49,11 +66,13 @@ export const Panel = ({ cols, data }) => {
           }),
         onRowDelete: (oldData) =>
           new Promise((resolve) => {
+            console.log(oldData)
             setTimeout(() => {
               resolve()
               setState((prevState) => {
                 const data = [...prevState.data]
                 data.splice(data.indexOf(oldData), 1)
+                deleteData(`${url}/${oldData.id}`)
                 return { ...prevState, data }
               })
             }, 600)

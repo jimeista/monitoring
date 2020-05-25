@@ -22,7 +22,6 @@ export const getData = (arr) => {
     data.push(obj)
   })
 
-  console.log(data)
   return data
 }
 

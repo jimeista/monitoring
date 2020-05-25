@@ -10,12 +10,12 @@ function App() {
   const { setEvent, setPassport } = useContext(AppContext)
 
   useEffect(() => {
-    fetchData('http://localhost:8000/events', {
+    fetchData('/api/districts/passports', {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     }).then((data) => setPassport(data))
 
-    fetchData('http://localhost:8000/events', {
+    fetchData('/api/districts/events', {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     }).then((data) => setEvent(data))

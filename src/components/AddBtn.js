@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const AddBtn = () => {
+export const AddBtn = ({ handleSubmit }) => {
   const classes = useStyles()
   const [district, setDistrict] = React.useState()
 
@@ -27,7 +27,7 @@ export const AddBtn = () => {
     setDistrict(event.target.value)
   }
 
-  const handleSubmit = () => {}
+  const handleClick = () => handleSubmit(district)
 
   const renderMenuItems = getDistricts().map((dis) => (
     <MenuItem value={dis}>{dis}</MenuItem>
@@ -44,7 +44,7 @@ export const AddBtn = () => {
           {renderMenuItems}
         </Select>
       </FormControl>
-      <IconButton aria-label='delete' onClick={handleSubmit}>
+      <IconButton aria-label='delete' onClick={handleClick}>
         <Icon color='primary' style={{ fontSize: 30 }}>
           add_circle
         </Icon>
