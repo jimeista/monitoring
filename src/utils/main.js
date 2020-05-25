@@ -26,25 +26,53 @@ export const getData = (arr) => {
   return data
 }
 
-export const getDistricts = (data) => {
+export const getDistricts = () => {
   const districts = []
-
-  Object.keys(data).map((key) => districts.push(key))
-
+  data.map((key) => districts.push(key))
   return districts
+}
+
+export const mapp = (events, passport, db) => {
+  events.map((item) => {
+    let obj = {}
+    const district = item.district
+    //exctract obj from event
+    for (let key in item) {
+      if (key !== 'district') {
+        obj = { ...obj, [key]: item[key] }
+      }
+    }
+
+    db[district].events.push(obj)
+  })
+
+  passport.map((item) => {
+    let obj = {}
+    const district = item.district
+    //exctract obj from event
+    for (let key in item) {
+      if (key !== 'district') {
+        obj = { ...obj, [key]: item[key] }
+      }
+    }
+
+    db[district].passport.push(obj)
+  })
+
+  return db
 }
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
-const data = {
-  'Алатайский район': { events: [], passport: [] },
-  'Алмалинский район': { events: [], passport: [] },
-  'Ауэзовский район': { events: [], passport: [] },
-  'Бостандыкский район': { events: [], passport: [] },
-  'Медеуский район': { events: [], passport: [] },
-  'Наурызбайский район': { events: [], passport: [] },
-  'Турксибский район': { events: [], passport: [] },
-  'Жетысуский район': { events: [], passport: [] },
-}
+const data = [
+  'Алатайский район',
+  'Алмалинский район',
+  'Ауезовский район',
+  'Бостандыкский район',
+  'Медеуский район',
+  'Наурызбайский район',
+  'Турксибский район',
+  'Жетысуский район',
+]
