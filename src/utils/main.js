@@ -29,7 +29,7 @@ export const getData = (arr) => {
 export const getDistricts = () => {
   const districts = []
 
-  Object.keys(data).map((key) => districts.push(key))
+  data.map((key) => districts.push(key))
 
   return districts
 }
@@ -51,13 +51,13 @@ export const mapp = (arr, bool, db) => {
   })
 }
 
-export const data = {
-  'Алатайский район': { events: [], passport: [] },
-  'Алмалинский район': { events: [], passport: [] },
-  'Ауезовский район': { events: [], passport: [] },
-  'Бостандыкский район': { events: [], passport: [] },
-  'Медеуский район': { events: [], passport: [] },
-  'Наурызбайский район': { events: [], passport: [] },
-  'Турксибский район': { events: [], passport: [] },
-  'Жетысуский район': { events: [], passport: [] },
-}
+export const data = [
+  'Алатайский район',
+  'Алмалинский район',
+  'Ауезовский район',
+  'Бостандыкский район',
+  'Медеуский район',
+  'Наурызбайский район',
+  'Турксибский район',
+  'Жетысуский район',
+]

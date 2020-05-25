@@ -6,11 +6,12 @@ import { AddBtn } from './AddBtn'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    justifyContent: 'space-between',
     flexWrap: 'wrap',
     marginBottom: theme.spacing(4),
   },
   textarea: {
-    flexGrow: 1,
+    width: '70%',
     minWidth: 250,
     padding: theme.spacing(2),
     marginBottom: theme.spacing(2),

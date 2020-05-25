@@ -1,6 +1,4 @@
-import React, { createContext, useState, useEffect } from 'react'
-
-import { mapp, data } from '../utils/main'
+import React, { createContext, useState } from 'react'
 
 const AppContext = createContext()
 
@@ -8,13 +6,6 @@ const AppContextProvider = ({ children }) => {
   let [passport, setPassport] = useState([])
   let [events, setEvent] = useState([])
   let [db, setDb] = useState(data)
-
-  useEffect(() => {
-    if (passport.length > 0 && events.length > 0) {
-      mapp(passport, false, db)
-      mapp(events, true, db)
-    }
-  }, [events, passport, db])
 
   return (
     <AppContext.Provider
@@ -26,3 +17,39 @@ const AppContextProvider = ({ children }) => {
 }
 
 export { AppContext, AppContextProvider }
+
+const data = {
+  'Алатайский район': {
+    events: [
+      {
+        event: 'Проведено сейсмоусиление школы №5',
+        id: 2,
+      },
+      {
+        event: 'Проведено сейсмоусиление школы №5',
+        id: 1,
+      },
+    ],
+    passport: [
+      {
+        'number-tag': '6763',
+        measurement: '',
+        id: 3,
+        'description-tag': 'Саженцев хвойных и лиственных пород высажены',
+      },
+      {
+        'number-tag': '733',
+        measurement: 'km',
+        id: 2,
+        'description-tag': 'Саженцев хвойных и лиственных пород высажены',
+      },
+    ],
+  },
+  'Алмалинский район': { events: [], passport: [] },
+  'Ауезовский район': { events: [], passport: [] },
+  'Бостандыкский район': { events: [], passport: [] },
+  'Медеуский район': { events: [], passport: [] },
+  'Наурызбайский район': { events: [], passport: [] },
+  'Турксибский район': { events: [], passport: [] },
+  'Жетысуский район': { events: [], passport: [] },
+}
