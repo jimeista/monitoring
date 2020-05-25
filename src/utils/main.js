@@ -28,27 +28,12 @@ export const getData = (arr) => {
 
 export const getDistricts = () => {
   const districts = []
-
   data.map((key) => districts.push(key))
-
   return districts
 }
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-export const mapp = (arr, bool, db) => {
-  arr.forEach((item) => {
-    let obj = {}
-    const district = item.district
-    for (let key in item) {
-      if (key !== 'district') {
-        obj = { ...obj, [key]: item[key] }
-      }
-    }
-    bool ? db[district].events.push(obj) : db[district].passport.push(obj)
-  })
 }
 
 export const data = [
