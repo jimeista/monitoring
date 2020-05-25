@@ -34,6 +34,7 @@ export const Passport = (props) => {
 
   const renderPassport = passport.map((pass, key) => (
     <PassportCard
+      key={key}
       number={pass['number-tag']}
       measurement={pass['measurement']}
       description={pass['description-tag']}

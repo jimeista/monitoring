@@ -25,7 +25,7 @@ export const DistrictContainer = () => {
       passport: db[key].passport,
     }
 
-    return <District district={district} />
+    return <District key={key} district={district} />
   })
 
   return (
