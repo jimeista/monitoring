@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import OwlCarousel from 'react-owl-carousel'
@@ -37,9 +37,7 @@ const useStyles = makeStyles((theme) => ({
 export const DistrictContainer = () => {
   const classes = useStyles()
 
-  const { db } = useContext(AppContext)
-  const [ev, setEv] = useState()
-  const [pass, setPass] = useState()
+  const { ev, setEv, pass, setPass } = useContext(AppContext)
 
   useEffect(() => {
     const url1 = '/api/districts/events?district='
@@ -51,29 +49,41 @@ export const DistrictContainer = () => {
   const getData = (url1, url2) => {
     getDistricts().map((dis) => {
       getDistrict(`${url1}${dis}`).then((data) =>
-        setEv((ev) => ({
-          ...ev,
-          [dis]: { events: data },
-        }))
+        data !== undefined
+          ? setEv((ev) => ({
+              ...ev,
+              [dis]: data,
+            }))
+          : setEv((ev) => ({
+              ...ev,
+              [dis]: [],
+            }))
       )
       getDistrict(`${url2}${dis}`).then((data) =>
-        setPass((pass) => ({
-          ...pass,
-          [dis]: { passport: data },
-        }))
+        data !== undefined
+          ? setPass((pass) => ({
+              ...pass,
+              [dis]: data,
+            }))
+          : setPass((pass) => ({
+              ...pass,
+              [dis]: [],
+            }))
       )
     })
   }
 
-  const renderPanel = getDistricts().map((dis) => (
-    <District
-      district={{
-        district: dis,
-        passport: db[dis].passport,
-        events: db[dis].events,
-      }}
-    />
-  ))
+  const renderPanel = getDistricts().map((dis) =>
+    pass[dis] && ev[dis] ? (
+      <District
+        district={{
+          district: dis,
+          passport: pass[dis],
+          events: ev[dis],
+        }}
+      />
+    ) : null
+  )
   return (
     <Card className={classes.card}>
       <OwlCarousel
