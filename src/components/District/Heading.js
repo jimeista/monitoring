@@ -5,6 +5,7 @@ const classes = {
     display: 'flex',
     alignItems: 'center',
     color: '#333',
+    fontSize: 25,
     height: '10vh',
     marginLeft: '20px',
     fontFamily: 'Karla',

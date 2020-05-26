@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
-import IconButton from '@material-ui/core/IconButton'
-import Icon from '@material-ui/core/Icon'
+// import IconButton from '@material-ui/core/IconButton'
+// import Icon from '@material-ui/core/Icon'
 
 import { getDistricts } from '../utils/main'
 
@@ -13,21 +13,16 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     marginLeft: theme.spacing(2),
   },
-  btn: {
-    display: 'flex',
-    height: 60,
-  },
 }))
 
-export const AddBtn = ({ handleSubmit }) => {
+export const AddBtn = ({ onChange }) => {
   const classes = useStyles()
   const [district, setDistrict] = React.useState()
 
   const handleChange = (event) => {
     setDistrict(event.target.value)
+    onChange(district)
   }
-
-  const handleClick = () => handleSubmit(district)
 
   const renderMenuItems = getDistricts().map((dis) => (
     <MenuItem value={dis}>{dis}</MenuItem>
@@ -44,11 +39,11 @@ export const AddBtn = ({ handleSubmit }) => {
           {renderMenuItems}
         </Select>
       </FormControl>
-      <IconButton aria-label='delete' onClick={handleClick}>
+      {/* <IconButton aria-label='delete' onClick={handleClick}>
         <Icon color='primary' style={{ fontSize: 30 }}>
           add_circle
         </Icon>
-      </IconButton>
+      </IconButton>*/}
     </div>
   )
 }

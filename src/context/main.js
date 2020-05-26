@@ -6,10 +6,11 @@ const AppContextProvider = ({ children }) => {
   let [passport, setPassport] = useState([])
   let [events, setEvent] = useState([])
   let [db, setDb] = useState(data)
+  let [district, setDistrict] = useState('')
 
   return (
     <AppContext.Provider
-      value={{ db, setDb, passport, setPassport, events, setEvent }}
+      value={{ db, setDb, district, setDistrict, passport, setPassport, events, setEvent }}
     >
       {children}
     </AppContext.Provider>
