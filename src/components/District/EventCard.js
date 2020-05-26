@@ -11,15 +11,17 @@ const useStyles = makeStyles({
     margin: '8px 0',
     alignItems: 'center',
   },
-  title: {
+  event: {
     fontSize: 18,
     fontFamily: 'Karla',
+    letterSpacing: '0.5',
     padding: 10,
+    color: '#333',
   },
   icon: {
     fontSize: 10,
     marginLeft: 10,
-    color: '#333',
+    color: '#286090',
   },
 })
 
@@ -29,11 +31,11 @@ export const EventCard = (props) => {
   const { event } = props
 
   return (
-    <Card className={classes.root}>
+    <div className={classes.root}>
       <FiberManualRecordIcon className={classes.icon} />
-      <Typography className={classes.title} color='textSecondary'>
+      <Typography className={classes.event} color='textSecondary'>
         {event}
       </Typography>
-    </Card>
+    </div>
   )
 }

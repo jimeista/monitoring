@@ -3,7 +3,7 @@ export const fetchData = async (url) =>
 
 export const postData = async (url, data) =>
   await fetch(url, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const postData = async (url, data) =>
 
 export const putData = async (url, data) =>
   await fetch(url, {
-    method: 'PUT',
+    method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -35,3 +35,11 @@ export const deleteData = async (url) =>
   })
     .then((res) => res.json())
     .then((value) => console.log(value))
+
+export const getDistrict = async (url) =>
+  await fetch(url, {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  }).then((res) => res.json())

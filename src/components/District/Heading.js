@@ -1,22 +1,32 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 
-const classes = {
+const useStyles = makeStyles((theme) => ({
   heading: {
+    width: '90%',
     display: 'flex',
     alignItems: 'center',
-    color: '#333',
+    color: '#fff',
     fontSize: 25,
+    fontWeight: 700,
     height: '10vh',
-    marginLeft: '20px',
     fontFamily: 'Karla',
+    [theme.breakpoints.up('lg')]: {
+      height: '15vh',
+    },
   },
-}
+  h1: {
+    marginLeft: 10,
+  },
+}))
 
 export const Heading = ({ title, style }) => {
+  const classes = useStyles()
+
   const headingStyle = style ? style : classes.heading
   return (
-    <div style={headingStyle}>
-      <h1>{title}</h1>
+    <div className={headingStyle}>
+      <h1 className={classes.h1}>{title}</h1>
     </div>
   )
 }

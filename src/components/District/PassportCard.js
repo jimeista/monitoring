@@ -7,27 +7,29 @@ const useStyles = makeStyles({
   root: {
     padding: 10,
     flexGrow: 1,
-    margin: '8px 0',
-    borderLeft: '10px solid blue',
+    margin: '10px 0',
+    borderLeft: '5px solid #286090',
   },
   numbers: {
     display: 'flex',
   },
   number: {
-    fontSize: 20,
-    color: 'blue',
+    fontSize: 30,
+    color: '#286090',
     fontWeight: 700,
   },
   measurement: {
     fontSize: 12,
     fontWeight: 600,
-    color: 'blue',
+    color: '#286090',
     marginLeft: 2,
-    paddingTop: 9,
+    paddingTop: 20,
   },
   description: {
     fontFamily: 'Karla',
+    color: '#333',
     fontSize: 18,
+    letterSpacing: '0.5',
   },
 })
 
@@ -37,7 +39,7 @@ export const PassportCard = (props) => {
   const { number, measurement, description } = props
 
   return (
-    <Card className={classes.root}>
+    <div className={classes.root}>
       <div className={classes.numbers}>
         <Typography className={classes.number} color='textSecondary'>
           {number}
@@ -49,6 +51,6 @@ export const PassportCard = (props) => {
       <Typography className={classes.description} color='textSecondary'>
         {description}
       </Typography>
-    </Card>
+    </div>
   )
 }

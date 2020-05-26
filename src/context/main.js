@@ -5,12 +5,27 @@ const AppContext = createContext()
 const AppContextProvider = ({ children }) => {
   let [passport, setPassport] = useState([])
   let [events, setEvent] = useState([])
+  let [disEv, setDisEv] = useState([])
+  let [disPass, setDisPass] = useState([])
   let [db, setDb] = useState(data)
   let [district, setDistrict] = useState('')
 
   return (
     <AppContext.Provider
-      value={{ db, setDb, district, setDistrict, passport, setPassport, events, setEvent }}
+      value={{
+        db,
+        setDb,
+        district,
+        setDistrict,
+        disPass,
+        setDisPass,
+        disEv,
+        setDisEv,
+        passport,
+        setPassport,
+        events,
+        setEvent,
+      }}
     >
       {children}
     </AppContext.Provider>
@@ -20,7 +35,7 @@ const AppContextProvider = ({ children }) => {
 export { AppContext, AppContextProvider }
 
 const data = {
-  'Алатайский район': {
+  'Алтайский район': {
     events: [
       {
         event: 'Проведено сейсмоусиление школы №5',

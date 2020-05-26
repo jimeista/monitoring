@@ -2,6 +2,6 @@ import React from 'react'
 
 import { DistrictContainer } from '../containers/DistrictContainer'
 
-export const Home = () => {
+export const Monitoring = () => {
   return <DistrictContainer />
 }
