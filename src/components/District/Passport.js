@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 20,
     paddingTop: 0,
     overflow: 'scroll',
-  
+
     [theme.breakpoints.down('lg')]: {
       fontSize: '0.1rem',
     },
@@ -55,18 +55,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const Passport = (props) => {
-  const { passport } = props
+export const Passport = ({ passport }) => {
   const classes = useStyles()
 
-  const renderPassport = passport.map((pass, key) => (
-    <PassportCard
-      key={key}
-      number={pass['number-tag']}
-      measurement={pass['measurement']}
-      description={pass['description-tag']}
-    />
-  ))
+  const renderPassport = passport
+    ? passport.map((pass, key) => (
+        <PassportCard
+          key={key}
+          number={pass['number-tag']}
+          measurement={pass['measurement']}
+          description={pass['description-tag']}
+        />
+      ))
+    : null
 
   return (
     <Card classes={{ root: classes.root }}>

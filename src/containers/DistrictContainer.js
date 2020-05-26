@@ -1,10 +1,13 @@
-import React from 'react'
-import { AppContext } from '../context/main'
+import React, { useState, useEffect, useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import OwlCarousel from 'react-owl-carousel'
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel/dist/assets/owl.theme.default.css'
+
+import { getDistricts } from '../utils/main'
+import { getDistrict } from '../utils/api'
+import { AppContext } from '../context/main'
 
 import { District } from '../components/District/District'
 
@@ -32,18 +35,45 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export const DistrictContainer = () => {
-  const { db } = React.useContext(AppContext)
   const classes = useStyles()
 
-  const renderDistrict = Object.keys(db).map((key) => {
-    let district = {
-      district: key,
-      events: db[key].events,
-      passport: db[key].passport,
-    }
-    return <District key={key} district={district} />
-  })
+  const { db } = useContext(AppContext)
+  const [ev, setEv] = useState()
+  const [pass, setPass] = useState()
 
+  useEffect(() => {
+    const url1 = '/api/districts/events?district='
+    const url2 = '/api/districts/passports?district='
+
+    getData(url1, url2)
+  }, [])
+
+  const getData = (url1, url2) => {
+    getDistricts().map((dis) => {
+      getDistrict(`${url1}${dis}`).then((data) =>
+        setEv((ev) => ({
+          ...ev,
+          [dis]: { events: data },
+        }))
+      )
+      getDistrict(`${url2}${dis}`).then((data) =>
+        setPass((pass) => ({
+          ...pass,
+          [dis]: { passport: data },
+        }))
+      )
+    })
+  }
+
+  const renderPanel = getDistricts().map((dis) => (
+    <District
+      district={{
+        district: dis,
+        passport: db[dis].passport,
+        events: db[dis].events,
+      }}
+    />
+  ))
   return (
     <Card className={classes.card}>
       <OwlCarousel
@@ -55,7 +85,7 @@ export const DistrictContainer = () => {
         animateIn={true}
         dots
       >
-        {renderDistrict}
+        {renderPanel}
       </OwlCarousel>
     </Card>
   )

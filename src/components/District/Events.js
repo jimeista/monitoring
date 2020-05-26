@@ -54,13 +54,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const Events = (props) => {
-  const { events } = props
+export const Events = ({ events }) => {
   const classes = useStyles()
 
-  const renderEvents = events.map((event, key) => (
-    <EventCard key={key} event={event.event} />
-  ))
+  const renderEvents = events
+    ? events.map((event, key) => <EventCard key={key} event={event.event} />)
+    : null
 
   return (
     <Card classes={{ root: classes.root }}>

@@ -5,9 +5,9 @@ const AppContext = createContext()
 const AppContextProvider = ({ children }) => {
   let [passport, setPassport] = useState([])
   let [events, setEvent] = useState([])
-  let [disEv, setDisEv] = useState([])
-  let [disPass, setDisPass] = useState([])
-  let [db, setDb] = useState(data)
+  let [ev, setEv] = useState([])
+  let [pass, setPass] = useState([])
+  const [db, setDb] = useState(data)
   let [district, setDistrict] = useState('')
 
   return (
@@ -17,10 +17,10 @@ const AppContextProvider = ({ children }) => {
         setDb,
         district,
         setDistrict,
-        disPass,
-        setDisPass,
-        disEv,
-        setDisEv,
+        pass,
+        setPass,
+        ev,
+        setEv,
         passport,
         setPassport,
         events,
