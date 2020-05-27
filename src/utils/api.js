@@ -41,4 +41,8 @@ export const getDistrict = (url) =>
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-  }).then((res) => res.json())
+  }).then((res) => {
+    if (res.ok) {
+      return res.json()
+    }
+  })

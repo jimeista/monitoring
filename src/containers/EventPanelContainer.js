@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 
 import { fetchData, postData, putData, deleteData } from '../utils/api'
 import { AppContext } from '../context/main'
-import { getColumns, getData } from '../utils/main'
+import { disableTableDistrict, getColumns, getData } from '../utils/main'
 
 import { Panel } from '../components/Panel'
 import { AddBtn } from '../components/AddBtn'

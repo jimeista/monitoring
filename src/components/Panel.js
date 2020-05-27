@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import MaterialTable from 'material-table'
 
 export const Panel = (props) => {
-  const { cols, data, dis, postData, putData, deleteData, url } = props
+  const { cols, data, postData, putData, deleteData, url } = props
 
   const [state, setState] = useState({ cols, data })
   const [selectedRow, setSelectedRow] = useState(null)
@@ -42,8 +42,8 @@ export const Panel = (props) => {
               resolve()
               setState((prevState) => {
                 const data = [...prevState.data]
-                console.log(newData)
                 data.push(newData)
+                console.log(prevState)
                 postData(url, newData)
                 return { ...prevState, data }
               })
@@ -51,14 +51,13 @@ export const Panel = (props) => {
           }),
         onRowUpdate: (newData, oldData) =>
           new Promise((resolve) => {
-            console.log('NewData', newData)
-            console.log('OldData', oldData)
             setTimeout(() => {
               resolve()
               if (oldData) {
                 setState((prevState) => {
                   const data = [...prevState.data]
                   data[data.indexOf(oldData)] = newData
+                  console.log(newData)
                   putData(`${url}/${oldData.id}`, newData)
                   return { ...prevState, data }
                 })
@@ -67,7 +66,6 @@ export const Panel = (props) => {
           }),
         onRowDelete: (oldData) =>
           new Promise((resolve) => {
-            console.log(oldData)
             setTimeout(() => {
               resolve()
               setState((prevState) => {
