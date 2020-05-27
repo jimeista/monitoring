@@ -1,6 +1,6 @@
 export const fetchData = (url) => fetch(url).then((res) => res.json())
 
-export const postData = (url, data) =>
+export const putData = (url, data) =>
   fetch(url, {
     method: 'PUT',
     headers: {
@@ -10,9 +10,9 @@ export const postData = (url, data) =>
     body: JSON.stringify(data),
   })
     .then((res) => res.json())
-    .then((value) => console.log(value))
+    .then((value) => console.log('PUT', value))
 
-export const putData = (url, data) =>
+export const postData = (url, data) =>
   fetch(url, {
     method: 'POST',
     headers: {
@@ -22,7 +22,7 @@ export const putData = (url, data) =>
     body: JSON.stringify(data),
   })
     .then((res) => res.json())
-    .then((value) => console.log(value))
+    .then((value) => console.log('POST', value))
 
 export const deleteData = (url) =>
   fetch(url, {
@@ -33,7 +33,7 @@ export const deleteData = (url) =>
     },
   })
     .then((res) => res.json())
-    .then((value) => console.log(value))
+    .then((value) => console.log('DELETE', value))
 
 export const getDistrict = (url) =>
   fetch(url, {

@@ -7,13 +7,10 @@ const AppContextProvider = ({ children }) => {
   let [events, setEvent] = useState([])
   let [ev, setEv] = useState([])
   let [pass, setPass] = useState([])
-  let [district, setDistrict] = useState('')
 
   return (
     <AppContext.Provider
       value={{
-        district,
-        setDistrict,
         pass,
         setPass,
         ev,
@@ -30,3 +27,9 @@ const AppContextProvider = ({ children }) => {
 }
 
 export { AppContext, AppContextProvider }
+
+// {
+//   event: '',
+//   id: 1,
+//   district: '',
+// },

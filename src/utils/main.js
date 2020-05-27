@@ -1,25 +1,40 @@
+const data = [
+  'Алтайский район',
+  'Алмалинский район',
+  'Ауезовский район',
+  'Бостандыкский район',
+  'Медеуский район',
+  'Наурызбайский район',
+  'Турксибский район',
+  'Жетысуский район',
+]
+let rusTitles
+let lookup
+
+data.forEach((dis) => {
+  lookup = { ...lookup, [dis]: dis }
+})
+
 export const getColumns = (arr) => {
   let cols = []
-  let obj = arr[0]
-  let lookup = {}
+  let title
 
   rusTitles = translateTableTitles(arr[0])
-  data.forEach((dis) => {
-    lookup = { ...lookup, [dis]: dis }
-  })
 
-  for (let key in obj) {
-    if (key === 'id') continue
-    key === 'district'
-      ? cols.push({
-          title: capitalizeFirstLetter(rusTitles[key]),
-          field: [key],
-          lookup,
-        })
-      : cols.push({
-          title: capitalizeFirstLetter(rusTitles[key]),
-          field: key,
-        })
+  if (arr) {
+    for (let key in arr[0]) {
+      if (key === 'id') continue
+      key === 'district'
+        ? cols.push({
+            title: capitalizeFirstLetter(rusTitles[key]),
+            field: key,
+            lookup,
+          })
+        : cols.push({
+            title: capitalizeFirstLetter(rusTitles[key]),
+            field: key,
+          })
+    }
   }
 
   return cols
@@ -29,16 +44,16 @@ export const getData = (arr) => {
   let data = []
   let obj = {}
 
-  rusTitles = translateTableTitles(arr[0])
-
-  arr.map((item) => {
-    Object.keys(item).map((key) =>
-      item[key] === 'district'
-        ? (obj = { ...obj, [key]: key })
-        : (obj = { ...obj, [key]: item[key] })
-    )
-    data.push(obj)
-  })
+  if (arr) {
+    arr.map((item) => {
+      Object.keys(item).map((key) =>
+        item[key] === 'district'
+          ? (obj = { ...obj, [key]: key })
+          : (obj = { ...obj, [key]: item[key] })
+      )
+      data.push(obj)
+    })
+  }
 
   return data
 }
@@ -66,16 +81,3 @@ const translateTableTitles = (obj) => {
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
 }
-
-export const data = [
-  'Алтайский район',
-  'Алмалинский район',
-  'Ауезовский район',
-  'Бостандыкский район',
-  'Медеуский район',
-  'Наурызбайский район',
-  'Турксибский район',
-  'Жетысуский район',
-]
-
-let rusTitles

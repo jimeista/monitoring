@@ -9,12 +9,11 @@ export const Panel = (props) => {
 
   return (
     <MaterialTable
-      title='Edit Table'
+      title='Таблица данных'
       columns={state.cols}
       data={state.data}
       onRowClick={(evt, row) => setSelectedRow(row)}
       options={{
-        selection: true,
         actionsColumnIndex: -1,
         headerStyle: {
           backgroundColor: '#01579b',
@@ -27,14 +26,6 @@ export const Panel = (props) => {
               : '#FFF',
         }),
       }}
-      actions={[
-        {
-          tooltip: 'Remove All Selected Users',
-          icon: 'delete',
-          onClick: (evt, data) =>
-            alert('You want to delete ' + data.length + ' rows'),
-        },
-      ]}
       editable={{
         onRowAdd: (newData) =>
           new Promise((resolve) => {
@@ -43,8 +34,7 @@ export const Panel = (props) => {
               setState((prevState) => {
                 const data = [...prevState.data]
                 data.push(newData)
-                console.log(prevState)
-                postData(url, newData)
+                putData(url, newData)
                 return { ...prevState, data }
               })
             }, 600)
@@ -54,11 +44,11 @@ export const Panel = (props) => {
             setTimeout(() => {
               resolve()
               if (oldData) {
+                console.log('OldData', oldData)
                 setState((prevState) => {
                   const data = [...prevState.data]
                   data[data.indexOf(oldData)] = newData
-                  console.log(newData)
-                  putData(`${url}/${oldData.id}`, newData)
+                  postData(`${url}/${oldData.id}`, newData)
                   return { ...prevState, data }
                 })
               }
@@ -68,6 +58,7 @@ export const Panel = (props) => {
           new Promise((resolve) => {
             setTimeout(() => {
               resolve()
+              console.log('oldData', oldData)
               setState((prevState) => {
                 const data = [...prevState.data]
                 data.splice(data.indexOf(oldData), 1)

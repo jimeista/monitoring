@@ -1,31 +1,27 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { fetchData, postData, putData, deleteData } from '../utils/api'
 import { AppContext } from '../context/main'
-import { disableTableDistrict, getColumns, getData } from '../utils/main'
+import { getColumns, getData } from '../utils/main'
 
 import { Panel } from '../components/Panel'
-import { AddBtn } from '../components/AddBtn'
 import { Loading } from '../components/Loading'
 
 export const EventPanelContainer = () => {
-  const { district, setDistrict, events, setEvent } = useContext(AppContext)
+  const { district, events, setEvent } = useContext(AppContext)
   const url = '/api/districts/events'
 
   useEffect(() => {
-    fetchData('/api/districts/events', {
+    fetchData(url, {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     }).then((data) => setEvent(data))
-  }, [])
-
-  const handleChange = (dis) => setDistrict(dis)
+  }, [setEvent])
 
   return events.length <= 0 ? (
     <Loading />
   ) : (
-    <>
-      {/* <AddBtn onChange={handleChange} /> */}
+    <div>
       <Panel
         cols={getColumns(events)}
         data={getData(events)}
@@ -35,6 +31,6 @@ export const EventPanelContainer = () => {
         deleteData={deleteData}
         dis={district}
       />
-    </>
+    </div>
   )
 }
