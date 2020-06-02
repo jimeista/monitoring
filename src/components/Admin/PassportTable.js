@@ -52,18 +52,16 @@ const EditableCell = ({
 export const PassportTable = ({ district }) => {
   const [form] = Form.useForm()
   const [data, setData] = useState([])
-  const [state, setState] = useState([])
   const [editingKey, setEditingKey] = useState('')
-  const [number, setNumber] = useState()
+  const [number, setNumber] = useState('')
   const [measurement, setMeasurement] = useState('')
-  const [description, setDescription] = useState()
+  const [description, setDescription] = useState('')
 
   useEffect(() => {
     const url1 = '/api/districts/passports?district='
 
     const fetchData = async () => {
       const pass = await axios(`${url1}${district}`)
-      setState(pass.data)
       setData(setTableData(pass.data))
     }
     fetchData()
@@ -71,9 +69,23 @@ export const PassportTable = ({ district }) => {
 
   const isEditing = (record) => record.key === editingKey
 
-  const handleNumber = (e) => setNumber(e.target.value)
-  const handleDescription = (e) => setDescription(e.target.value)
-  const handleMeasurement = (e) => setMeasurement(e.target.value)
+  const handleNumber = (e) => {
+    let value = e.target.value
+    setNumber(value)
+    value = ''
+  }
+
+  const handleDescription = (e) => {
+    let value = e.target.value
+    setDescription(value)
+    value = ''
+  }
+
+  const handleMeasurement = (e) => {
+    let value = e.target.value
+    setMeasurement(value)
+    value = ''
+  }
 
   const add = () => {
     let key =

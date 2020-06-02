@@ -21,12 +21,17 @@ h1 {
 }
 
 .panel {
-  box-sizing: border-box;
   background-color: #424a5a;
   height: 43vh;
   padding: 20px 20px 10px;
-  overflow: auto;
+  /* overflow: auto; */
   margin-bottom: 10px;
+}
+
+.panelcards-wrapper {
+  overflow: auto;
+  height: 90%;
+  padding: 5px 0;
 }
 
 .title {
@@ -43,7 +48,7 @@ h1 {
 }
 
 .passport_card {
-  border-left: 5px solid #286090;
+  border-left: 5px solid #2288cd;
   padding-left: 15px;
   margin: 15px 0;
   color: #dcdcdc;
@@ -57,18 +62,18 @@ h1 {
 
 .event_card sup {
   font-size: 15px;
-  color: #286090;
+  color: #2288cd;
 }
 
 .passport_card span {
   font-size: 35px;
   font-weight: 700;
   margin-right: 5px;
-  color: #286090;
+  color: #2288cd;
 }
 
 .passport_card sub {
-  color: #286090;
+  color: #2288cd;
   font-weight: 500;
   font-size: 15px;
 }
@@ -112,6 +117,10 @@ h1 {
     width: 48%;
     height: 85vh;
   }
+  .passport_card span {
+    font-size: 38px;
+    margin-right: 8px;
+  }
 }
 
 /* // Extra large devices (large desktops, 1200px and up) */
@@ -128,5 +137,9 @@ h1 {
   .panel {
     height: 85vh;
     width: 49%;
+  }
+  .passport_card span {
+    font-size: 42px;
+    margin-right: 10px;
   }
 }

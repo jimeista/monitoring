@@ -43,7 +43,7 @@ const EditableCell = ({
 export const EventTable = ({ tabledata, district }) => {
   const [form] = Form.useForm()
   const [data, setData] = useState()
-  const [event, setEvent] = useState()
+  const [event, setEvent] = useState('')
   const [editingKey, setEditingKey] = useState('')
 
   useEffect(() => {
@@ -59,7 +59,11 @@ export const EventTable = ({ tabledata, district }) => {
 
   const isEditing = (record) => record.key === editingKey
 
-  const handleNews = (e) => setEvent(e.target.value)
+  const handleNews = (e) => {
+    let value = e.target.value
+    setEvent(value)
+    value = ''
+  }
 
   const add = () => {
     let key =
@@ -68,6 +72,7 @@ export const EventTable = ({ tabledata, district }) => {
       key,
       event,
     }
+    setEvent('')
     setData([...data, newData])
     newData = {
       ...newData,

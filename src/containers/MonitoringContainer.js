@@ -15,7 +15,7 @@ export const MonitoringContainer = () => {
       districtList.map(async (dis) => {
         const ev = await axios(`${url2}${dis}`)
         const pass = await axios(`${url1}${dis}`)
-        await setState((state) => ({
+        setState((state) => ({
           ...state,
           [dis]: { passports: pass.data, events: ev.data },
         }))
